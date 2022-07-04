@@ -120,7 +120,7 @@ GET: http://localhost:8080/api/users/search/1
 
 ```
 
-5. Exclusão de friend
+5. Exclusão do usuário
 ```
 DELETE: http://localhost:8080/api/users/delete/1
 ```
