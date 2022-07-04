@@ -44,6 +44,6 @@ public class UserSD {
     @Enumerated(EnumType.STRING)
     private Authorization authorizationStatus;
 
-    @OneToMany(mappedBy = "crm")
+    @OneToMany(mappedBy = "crm", fetch = FetchType.EAGER)
     private Collection<Crm> crmCollection = new ArrayList<>();
 }
