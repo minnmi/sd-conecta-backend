@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -46,6 +45,5 @@ public class UserSD {
     private Authorization authorizationStatus;
 
     @OneToMany(mappedBy = "crm")
-//    private Set<Crm> crmSet;
     private Collection<Crm> crmCollection = new ArrayList<>();
 }

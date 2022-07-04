@@ -33,10 +33,22 @@ public class UserSDController {
     }
 
     @GetMapping("/list")
-    private ResponseEntity<List<UserSD>> getAll(UserQueryParameter queryParameter)
-    {
+    private ResponseEntity<List<UserSD>> getAll(UserQueryParameter queryParameter) {
         final var users = this.userService.findAll(queryParameter);
         return new ResponseEntity<>(users, HttpStatus.OK);
-
     }
+
+    @DeleteMapping("/delete/{userId}")
+    private ResponseEntity<Void> deleteUser(@PathVariable Integer userId) {
+      userService.deleteUserById(userId);
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{userId}")
+    private ResponseEntity<UserSD> findUserById(@PathVariable Integer userId) {
+        final var user = this.userService.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
 }

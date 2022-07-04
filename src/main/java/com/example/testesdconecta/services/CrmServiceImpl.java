@@ -32,5 +32,12 @@ public class CrmServiceImpl implements CrmService {
             crm.setUserSD(userSD);
             this.crmRepository.save(crm);
         }
+
     }
+
+    @Override
+    public void deleteById(Integer crmId) {
+        crmRepository.deleteById(crmId);
+    }
+
 }

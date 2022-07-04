@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CrmService {
     void save(UserSD createdUser, List<SaveCrmWithSpecialtyRequest> crmList);
+
+    void deleteById(Integer crmId);
 }

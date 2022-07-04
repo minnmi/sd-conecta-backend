@@ -11,11 +11,9 @@ import com.example.testesdconecta.repositories.UserSDRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -95,12 +93,20 @@ public class UserServiceImpl implements UserService {
 
 
 
-
     @Override
     public void deleteUserById(Integer userId) {
+       deleteAllCrm(userId);
 
+       userSDRepository.deleteById(userId);
     }
 
+    @Override
+    public void deleteAllCrm(Integer userId) {
+        final var crmList = crmRepository.findAllByUserId(userId);
+        for (var crm : crmList) {
+            crmService.deleteById(crm.getCrmId());
+        }
+    }
 
     @Override
     public Crm getCrmById(Integer crmId) {
@@ -109,8 +115,5 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public void deleteCrmById(Integer crmId) {
 
-    }
 }

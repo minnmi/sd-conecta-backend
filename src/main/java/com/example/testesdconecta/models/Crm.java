@@ -27,6 +27,7 @@ public class Crm {
     @Enumerated(EnumType.STRING)
     private UF uf;
 
+    @Basic(optional = true)
     @Column(name = "specialty")
     private String specialty;
 

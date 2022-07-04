@@ -53,13 +53,13 @@ public interface UserSDRepository extends JpaRepository<UserSD, Integer> {
     */
 
     @Modifying
-    @Query(value = "SELECT user_sd.* " +
-            "FROM user_sd " +
-            "JOIN crm ON crm.user_id = user_sd.id" +
-            "WHERE user_sd.name LIKE \"%?1%\"" +
-            "AND (crm.specialty IS NULL OR crm.specialty LIKE \"%?2%\")" +
-            "GROUP BY user_sd.id", nativeQuery = true)
-    List<UserSD> findAllByFilter(String name, String specialty);
+    @Query(value = "SELECT USER_SD.* " +
+            "FROM USER_SD " +
+            "LEFT JOIN CRM ON CRM.USER_ID = USER_SD.USER_ID " +
+            "WHERE (?1 IS NULL OR USER_SD.USER_NAME LIKE %?2%) " +
+            "AND (?3 IS NULL OR CRM.SPECIALTY IS NULL OR CRM.SPECIALTY LIKE %?4%) " +
+            "GROUP BY USER_SD.USER_ID ", nativeQuery = true)
+    List<UserSD> findAllByFilter(String name1, String name2, String specialty1, String specialty2);
 
 //    @Query(value =
 //            "SELECT " +

@@ -24,10 +24,9 @@ public interface UserService {
     Crm getCrmById(Integer crmId);
 
 
-
     void deleteUserById(Integer userId);
 
-    void deleteCrmById(Integer crmId);
+    void deleteAllCrm(Integer userId);
 
     UserSD save(CreateUser createUser);
 

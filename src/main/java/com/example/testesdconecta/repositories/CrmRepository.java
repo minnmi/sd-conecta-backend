@@ -4,11 +4,9 @@ import com.example.testesdconecta.models.Crm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public interface CrmRepository extends JpaRepository<Crm, Integer> {
@@ -18,6 +16,12 @@ public interface CrmRepository extends JpaRepository<Crm, Integer> {
     @Modifying
     @Query(value = "DELETE FROM CRM WHERE CRM.USER_ID=?1", nativeQuery = true)
     void deleteAllByUserId(Integer idUser);
+
+    @Query(value =
+            "SELECT CRM.* " +
+            "FROM CRM " +
+            "WHERE (CRM.USER_ID=?1)", nativeQuery = true)
+    List<Crm> findAllByUserId(Integer userId);
 
 
 }
