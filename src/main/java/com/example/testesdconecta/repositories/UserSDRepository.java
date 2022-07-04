@@ -45,6 +45,13 @@ public interface UserSDRepository extends JpaRepository<UserSD, Integer> {
 //                .getResultList();
 //    }
 
+   /*
+   SELECT USER_SD.*
+   FROM USER_SD
+   JOIN CRM ON CRM.USER_ID = USER_SD.ID
+   WHERE USER_SD.NAME LIKE "%NAME%" AND (CRM.SPECIALTY IS NULL OR CRM.SPECIALTY LIKE "%specialty%") GROUP BY USER_US.ID
+    */
+
     @Modifying
     @Query(value = "SELECT user_sd.* " +
             "FROM user_sd " +

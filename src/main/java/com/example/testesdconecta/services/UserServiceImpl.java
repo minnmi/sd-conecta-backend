@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserSD> findAll(UserQueryParameter queryParameter) {
-        return this.userSDRepository.findAllByFilter(queryParameter.getName(), queryParameter.getSpecialty());
+        return this.userSDRepository.findAllByFilter(queryParameter.getName(), queryParameter.getName(), queryParameter.getSpecialty(), queryParameter.getSpecialty());
     }
 
 
